@@ -1,19 +1,117 @@
+:root {
+  --shadow-green:
+    0 0 50px 1px rgba(0, 255, 100, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --shadow-red:
+    0 0 50px 1px rgba(255, 2, 2, 0.489), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --shadow-yellow:
+    0 0 50px 1px rgba(255, 200, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  --progress-green: linear-gradient(180deg, #00ff88, #007a4d);
+  --progress-red: linear-gradient(180deg, #ff3b3b, #7a0b0b);
+  --progress-yellow: linear-gradient(180deg, #ffcc00, #8a6a00);
+
+  --glass-green: rgba(60, 200, 100, 0.15);
+  --glass-red: rgba(220, 60, 60, 0.15);
+  --glass-yellow: rgba(255, 200, 50, 0.15);
+}
+
 html {
   box-sizing: border-box;
+  font-size: 10px;
 }
+
 *,
-*::before,
-*::after {
+*::after,
+*::before {
   box-sizing: inherit;
   margin: 0;
   border: 0;
   padding: 0;
-  outline: 0;
 }
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: radial-gradient(circle at top, #0b1225, #050816);
+  font-family: sans-serif;
+}
+
+.container {
+  width: 34rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 3rem;
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: var(--glass-green);
+  border: 1px solid var(--progress-green);
+  position: relative;
+}
+
+.top {
+  align-self: flex-start;
+  color: #cbd5e1;
+}
+
+.top h1 {
+  font-size: 2.4rem;
+  color: white;
+}
+
+.battery {
+  width: 12rem;
+  height: 24rem;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-green);
+  margin-bottom: 4rem;
+}
+
+.percent {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  z-index: 2;
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(0, 255, 255, 0.25),
+    0 0 25px rgba(0, 255, 255, 0.15);
+  letter-spacing: 1px;
+}
+
+.status {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  font-weight: 700;
+  color: #04f4f0;
+  border-radius: 0.7rem;
+  background: rgba(13, 0, 255, 0.105);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  align-items: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  z-index: 0;
+  transition: 0.5s ease;
+  background: linear-gradient(180deg, #00ff88, #007a4d);
 }
