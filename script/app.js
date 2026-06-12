@@ -16,21 +16,20 @@ window.addEventListener("load", getBatteryInfo);
 async function getBatteryInfo() {
   try {
     const data = await navigator.getBattery();
+    const refreshBattery = () => {
+      console.log("ejra");
+      isCharging = data.charging;
+      batteryPercent = data.level * 100;
+      updateBattery();
+    };
+    refreshBattery();
+    data.addEventListener("chargingchange", refreshBattery);
+    data.addEventListener("levelchange", refreshBattery);
   } catch (err) {
     battery.classList.add("hidden");
     top1.innerHTML = "❌Your Browser Is Not Supported";
     top2.innerHTML = "Use Google Chrome";
-    return;
   }
-  const refreshBattery = () => {
-    console.log("ejra");
-    isCharging = data.charging;
-    batteryPercent = data.level * 100;
-    updateBattery();
-  };
-  refreshBattery();
-  data.addEventListener("chargingchange", refreshBattery);
-  data.addEventListener("levelchange", refreshBattery);
 }
 
 function updateBattery() {
