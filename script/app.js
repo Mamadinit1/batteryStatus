@@ -5,6 +5,8 @@ const progress = $.querySelector(".progress");
 const percentText = $.querySelector(".percent");
 const statusText = $.querySelector(".status");
 const charging = $.querySelector(".charging");
+const top1 = $.querySelector(".top1");
+const top2 = $.querySelector(".top2");
 
 let isCharging;
 let batteryPercent;
@@ -12,7 +14,14 @@ let batteryPercent;
 window.addEventListener("load", getBatteryInfo);
 
 async function getBatteryInfo() {
-  const data = await navigator.getBattery();
+  try {
+    const data = await navigator.getBattery();
+  } catch (err) {
+    battery.classList.add("hidden");
+    top1.innerHTML = "❌Your Browser Is Not Supported";
+    top2.innerHTML = "Use Google Chrome";
+    return;
+  }
   const refreshBattery = () => {
     console.log("ejra");
     isCharging = data.charging;
